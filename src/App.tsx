@@ -21,17 +21,6 @@ const Header = () => {
     )
 }
 
-const Technologies = () => {
-    return (
-        <div>
-            <ul>
-                <li>css</li>
-                <li>html</li>
-                <li>js</li>
-                <li>rect</li>
-            </ul>
-        </div>
-    )
-}
+
 
 export default App;

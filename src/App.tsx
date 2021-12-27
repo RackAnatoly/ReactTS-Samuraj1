@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Technologies from "./Technologies";
+import Header from "./Header";
 
 function App() {
     return (
@@ -11,15 +13,7 @@ function App() {
     );
 }
 
-const Header = () => {
-    return (
-        <div>
-            <a href="">Home</a>
-            <a href="">News Feed</a>
-            <a href="">Message</a>
-        </div>
-    )
-}
+
 
 
 

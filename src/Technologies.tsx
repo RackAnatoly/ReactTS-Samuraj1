@@ -7,7 +7,7 @@ const Technologies = () => {
                 <li>css</li>
                 <li>html</li>
                 <li>js</li>
-                <li>rect</li>
+                <li>rect</li> 
             </ul>
         </div>
     )

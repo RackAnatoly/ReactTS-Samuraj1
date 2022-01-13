@@ -1,0 +1,15 @@
+.nav {
+    grid-area: n;
+    background-color: white;
+    margin: 10px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.item{
+    color: green;
+}
+
+/*.active{*/
+/*    color: gold;*/
+/*}*/

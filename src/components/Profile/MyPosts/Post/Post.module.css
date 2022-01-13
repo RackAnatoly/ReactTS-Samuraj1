@@ -2,6 +2,6 @@
     width: 40px;
     border-radius: 10px;
 }
-.item{
-    color: darkgoldenrod;
+span {
+    color: red;
 }

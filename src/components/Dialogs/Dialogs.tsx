@@ -17,6 +17,7 @@ const DialogItem = (props: DialogItemType) => {
     </div>
 }
 
+
 const Message=(props:MessageType)=>{
     return <div className={s.message}>{props.message}</div>
 }

@@ -1,5 +1,4 @@
 import React, {ReactNode} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -9,19 +8,23 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {DialogsItem} from "./components/Dialogs/DialogsItem/DialogsItem";
+import {StatePropsType} from "./index";
 
+type AppStatePropsType= {
+    state: StatePropsType
+}
 
-function App() {
-   return (
+function App(props: AppStatePropsType) {
+    return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/dialogs/*' element={<Dialogs/>}/>
-                        <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/dialogs/*'
+                               element={<Dialogs dialogs={props.state.dialogs} messages={props.state.messages}/>}/>
+                        <Route path='/profile' element={<Profile posts={props.state.posts}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

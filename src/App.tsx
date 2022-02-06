@@ -35,5 +35,4 @@ function App(props: AppStatePropsType) {
     )
 }
 
-
 export default App;

@@ -2,18 +2,23 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {PostPropsType} from "../../../State/redux";
-export type MyPostsType= {
-    posts:Array<PostPropsType>
+import {text} from "stream/consumers";
+
+export type MyPostsType = {
+    posts: Array<PostPropsType>
+    addPost: (postMessage: string) => void
 }
 
-const MyPosts = (props:MyPostsType) => {
+const MyPosts = (props: MyPostsType) => {
 
-    let postsElements=props.posts.map(p => <Post message={p.message} LikesCount={p.LikesCount}/>)
-    let newPostElement=React.createRef<HTMLTextAreaElement>();
+    let postsElements = props.posts.map(p => <Post message={p.message} LikesCount={p.LikesCount}/>)
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost=()=>{
-        let text=newPostElement.current?.value;
-        alert(text);
+    let addPost = () => {
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+            newPostElement.current.value='';
+        }
     }
 
     return (
@@ -21,8 +26,12 @@ const MyPosts = (props:MyPostsType) => {
             <h3>My posts</h3>
             <div>
                 <textarea ref={newPostElement}></textarea>
-                <div><button onClick={addPost}>Add Post</button></div>
-                <div><button>Remove</button></div>
+                <div>
+                    <button onClick={addPost}>Add Post</button>
+                </div>
+                <div>
+                    <button>Remove</button>
+                </div>
             </div>
             <div className={s.posts}>
                 {postsElements}

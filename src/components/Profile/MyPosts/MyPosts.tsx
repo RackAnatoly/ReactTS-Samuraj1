@@ -6,7 +6,9 @@ import {text} from "stream/consumers";
 
 export type MyPostsType = {
     posts: Array<PostPropsType>
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPost: (newText: string) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -16,16 +18,21 @@ const MyPosts = (props: MyPostsType) => {
 
     let addPost = () => {
         if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value='';
+            props.addPost()
         }
     }
 
+    let onPostChange = () => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value
+            props.updateNewPost(text);
+        }
+    }
     return (
         <div>
             <h3>My posts</h3>
             <div>
-                <textarea ref={newPostElement}></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 <div>
                     <button onClick={addPost}>Add Post</button>
                 </div>

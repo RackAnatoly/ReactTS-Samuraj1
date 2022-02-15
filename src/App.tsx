@@ -12,7 +12,8 @@ import {RootStateType} from "./State/redux";
 
 type AppStatePropsType= {
     state: RootStateType
-    addPost:(postMessage:string)=>void
+    addPost:()=>void
+    updateNewPost:(newText:string)=>void
 }
 
 function App(props: AppStatePropsType) {
@@ -25,7 +26,12 @@ function App(props: AppStatePropsType) {
                     <Routes>
                         <Route path='/dialogs/*'
                                element={<Dialogs dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}/>}/>
-                        <Route path='/profile' element={<Profile posts={props.state.profilePage.posts} addPost={props.addPost}/>}/>
+                        <Route path='/profile' element={
+                            <Profile
+                            posts={props.state.profilePage.posts}
+                            addPost={props.addPost}
+                            newPostText={props.state.profilePage.newPostText}
+                            updateNewPost={props.updateNewPost}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

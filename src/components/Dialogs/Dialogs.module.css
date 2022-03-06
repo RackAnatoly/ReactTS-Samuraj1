@@ -18,9 +18,9 @@
     color: darkgoldenrod;
 }
 .dialogs textarea{
-margin-top: 100px;
+margin-top: 50px;
 }
-.dialogs button{
-    width: 50px;
-    margin-top: 100px;
-}
+/*.dialogs button{*/
+/*    width: 50px;*/
+/*    margin-top: 100px;*/
+/*}*/

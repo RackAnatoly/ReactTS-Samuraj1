@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import ReactDOM from "react-dom";
+import React from 'react'
 import App from "./App";
-import {addPost, RootStateType, updateNewPost,} from "./State/redux";
+import {store} from './redux/state'
 
-export let rerenderEntereTree = (state:RootStateType) => {
+
+export const rerenderEntireTree=()=>{
     ReactDOM.render(
-        <App state={state} addPost={addPost} updateNewPost={updateNewPost}/>, document.getElementById('root')
+        <React.StrictMode>
+            <App store={store}/>
+        </React.StrictMode>,
+        document.getElementById('root')
     );
 }

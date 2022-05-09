@@ -1,3 +1,5 @@
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 
 export type PostPropsType = {
     id?: number
@@ -77,7 +79,6 @@ export let store: StoreType = {
     _callSubscriber() {
         console.log('state is changed')
     },
-
     getState() {
         return this._state
     },
@@ -86,45 +87,17 @@ export let store: StoreType = {
     },
 
     dispatch(action: ActionsTypes) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                LikesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
-        }
-        if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber()
-        }
-        if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.body;
-            this._callSubscriber()
-        }
-        if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id: 4, message: body})
-            this._callSubscriber()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber()
     },
 
 }
 
-export const addPostActionCreator = (): AddPostActionType => ({type: 'ADD-POST'})
-export const updateNewTextActionCreator = (text: string): ChangeNewTextActionType => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    }
-}
-export const sendMessageCreator=()=>({type:'SEND-MESSAGE'})
-export const updateNewMessageBodyCreator = (body: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-BODY',
-        body: body
-    }
-}
+// export const addPostActionCreator = (): AddPostActionType => ({type: 'ADD-POST'})
+// export const updateNewTextActionCreator = (text: string): ChangeNewTextActionType => {
+//     return {
+//         type: 'UPDATE-NEW-POST-TEXT',
+//         newText: text
+//     }
+// }

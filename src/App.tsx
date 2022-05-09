@@ -8,32 +8,36 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./redux/state";
+import {StoreType} from "./redux/store";
+import {RootStateReduxType} from "./redux/redux-store";
 
 type PropsType= {
-    store:StoreType,
-
+    store: RootStateReduxType,
+    dispatch: any;
 }
 
-
 function App(props: PropsType) {
-    const state = props.store.getState();
+    const state = props.store;
     // let message = state.profilePage.posts[0].message;
     // let message2=state.profilePage.posts[1].message;
     return (
-        <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/dialogs/*'
-                               element={<Dialogs store={state} dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>}/>
+                               element={<Dialogs store={state}
+                                                 dialogs={state.dialogsReducer.dialogs}
+                                                 messages={state.dialogsReducer.messages}
+                                                 dispatch={props.dispatch}
+                               />}
+                        />
                         <Route path='/profile' element={
                             <Profile
-                            posts={state.profilePage.posts}
-                            dispatch={props.store.dispatch.bind(props.store)}
-                            newPostText={state.profilePage.newPostText}
+                            posts={state.profileReducer.posts}
+                            dispatch={props.dispatch}
+                            newPostText={state.profileReducer.newPostText}
                             />}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
@@ -41,7 +45,6 @@ function App(props: PropsType) {
                     </Routes>
                 </div>
             </div>
-        </BrowserRouter>
     )
 }
 

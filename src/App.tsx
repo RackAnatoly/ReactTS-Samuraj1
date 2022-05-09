@@ -13,7 +13,7 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type PropsType= {
     store: RootStateReduxType,
-    dispatch: any;
+    // dispatch: any;
 }
 
 function App(props: PropsType) {

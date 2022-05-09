@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogsPageType} from "./store";
+import {ActionsTypes, DialogsPageType, SendMessageType, UpdateNewBodyType} from "./store";
 
 let initialState = {
     messages: [
@@ -31,8 +31,8 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
     }
 }
 
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'})
-export const updateNewMessageBodyCreator = (body: string) => {
+export const sendMessageCreator = ():SendMessageType => ({type: 'SEND-MESSAGE'})
+export const updateNewMessageBodyCreator = (body: string):UpdateNewBodyType => {
     return {
         type: 'UPDATE-NEW-MESSAGE-BODY',
         body: body

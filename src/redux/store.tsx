@@ -48,7 +48,7 @@ export type UpdateNewBodyType = {
 }
 export type SendMessageType = {
     type: 'SEND-MESSAGE',
-    body: string
+    // body: string
 }
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
     | UpdateNewBodyType | SendMessageType;

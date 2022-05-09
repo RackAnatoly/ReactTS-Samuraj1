@@ -3,29 +3,31 @@ import s from './Dialogs.module.css'
 import {DialogsItem} from "./DialogsItem/DialogsItem";
 import {Message} from "./Message/Message";
 import {ActionsTypes, DialogItemType, MessageType} from "../../redux/store";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {RootStateReduxType} from "../../redux/redux-store";
 
 type DialogsPropsType = {
-    dialogs: Array<DialogItemType>
+    updateNewMessageBody:(body:string)=>void
+    sendMessage:()=>void
+    dialogs:Array<DialogItemType>
     messages: Array<MessageType>
-    store: RootStateReduxType
-    dispatch: (action: any) => void
+    newMessageBody:string
+    // dialogs: Array<DialogItemType>
+    // store: DialogsPropsType
+    // dispatch: (action: any) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-
-    let dialogsElements = props.dialogs.map(d => <DialogsItem name={d.name} id={d.id}/>)
-    let messageElements = props.messages.map(m => <Message message={m.message} id={m.id}/>)
-    let newMessageBody = props.store.dialogsReducer.newMessageBody
+    // const state = props.store.getState();
+    let dialogsElements = props.dialogs.map((d:any) => <DialogsItem name={d.name} id={d.id}/>)
+    let messageElements = props.messages.map((m:any) => <Message message={m.message} id={m.id}/>)
+    let newMessageBody =props.newMessageBody
 
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator())
+        props.sendMessage();
     }
 
     let newMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.currentTarget.value
-        props.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body);
     }
 
     return (

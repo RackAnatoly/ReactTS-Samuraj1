@@ -7,6 +7,9 @@ let reducers = combineReducers({
     profileReducer
 })
 
-export type RootStateReduxType = ReturnType<typeof reducers>
+// export type RootStateReduxType = ReturnType<typeof reducers>
 
 export let store = createStore(reducers);
+
+export type RootStateReduxType=typeof store;
+

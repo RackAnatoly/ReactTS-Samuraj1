@@ -8,8 +8,8 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./redux/store";
 import {RootStateReduxType} from "./redux/redux-store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type PropsType= {
     store: RootStateReduxType,
@@ -17,9 +17,7 @@ type PropsType= {
 }
 
 function App(props: PropsType) {
-    const state = props.store;
-    // let message = state.profilePage.posts[0].message;
-    // let message2=state.profilePage.posts[1].message;
+    const state = props.store.getState();
     return (
             <div className='app-wrapper'>
                 <Header/>
@@ -27,17 +25,18 @@ function App(props: PropsType) {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/dialogs/*'
-                               element={<Dialogs store={state}
-                                                 dialogs={state.dialogsReducer.dialogs}
-                                                 messages={state.dialogsReducer.messages}
-                                                 dispatch={props.dispatch}
+                               element={<DialogsContainer store={props.store}
+                                                 // dialogs={state.dialogsReducer.dialogs}
+                                                 // messages={state.dialogsReducer.messages}
+                                                 // dispatch={props.dispatch}
                                />}
                         />
                         <Route path='/profile' element={
                             <Profile
-                            posts={state.profileReducer.posts}
-                            dispatch={props.dispatch}
-                            newPostText={state.profileReducer.newPostText}
+                            // posts={state.profileReducer.posts}
+                            // dispatch={props.dispatch}
+                            // newPostText={state.profileReducer.newPostText}
+                                store={props.store}
                             />}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>

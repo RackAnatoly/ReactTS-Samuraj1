@@ -17,7 +17,7 @@ type PropsType= {
 }
 
 function App(props: PropsType) {
-    const state = props.store.getState();
+    //const state = props.store.getState();
     return (
             <div className='app-wrapper'>
                 <Header/>
@@ -25,11 +25,7 @@ function App(props: PropsType) {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/dialogs/*'
-                               element={<DialogsContainer store={props.store}
-                                                 // dialogs={state.dialogsReducer.dialogs}
-                                                 // messages={state.dialogsReducer.messages}
-                                                 // dispatch={props.dispatch}
-                               />}
+                               element={<DialogsContainer />}
                         />
                         <Route path='/profile' element={
                             <Profile

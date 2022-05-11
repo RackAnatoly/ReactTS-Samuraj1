@@ -6,11 +6,11 @@ export type PostPropsType = {
     message: string
     LikesCount: number
 }
-export type DialogItemType = {
+type DialogItemType = {
     id: number
     name: string
 }
-export type MessageType = {
+type MessageType = {
     message: string
     id: number
 }

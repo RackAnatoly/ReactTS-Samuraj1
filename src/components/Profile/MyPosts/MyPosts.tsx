@@ -13,7 +13,7 @@ export type MyPostType = {
 
 const MyPosts = (props: MyPostType) => {
 
-    let postsElements = props.posts.map((p:any) => <Post  key={p.id} message={p.message} LikesCount={p.LikesCount}/>)
+    let postsElements = props.posts.map((p) => <Post  key={p.id} message={p.message} LikesCount={p.LikesCount}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let onAddPost = () => {

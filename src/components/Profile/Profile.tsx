@@ -1,11 +1,11 @@
 import React from 'react';
 import s from "./Profile.module.css";
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {RootStateReduxType} from "../../redux/redux-store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 export type ProfileType={
-    store:RootStateReduxType
+    store: RootStateReduxType
 }
 
 const Profile = (props:ProfileType) => {
@@ -17,7 +17,7 @@ const Profile = (props:ProfileType) => {
                 // posts={props.posts}
                 // newPostText={props.newPostText}
                 // dispatch={props.dispatch}
-                store={props.store}
+                // store={props.store}
             />
         </div>
     );

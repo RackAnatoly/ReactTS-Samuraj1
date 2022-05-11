@@ -4,8 +4,8 @@ import Post from "./Post/Post";
 import {PostPropsType,} from "../../../redux/store";
 
 export type MyPostType = {
-    updateNewPostText: (text:string)=>void
-    addPost: ()=>void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
     posts: Array<PostPropsType>
     newPostText: string
 }
@@ -13,7 +13,7 @@ export type MyPostType = {
 
 const MyPosts = (props: MyPostType) => {
 
-    let postsElements = props.posts.map((p) => <Post  key={p.id} message={p.message} LikesCount={p.LikesCount}/>)
+    let postsElements = props.posts.map((p) => <Post key={p.id} message={p.message} LikesCount={p.LikesCount}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let onAddPost = () => {

@@ -8,20 +8,21 @@ let initialState = {
     newPostText: 'it-kamasutra.com!'
 }
 
-export const profileReducer = (state: ProfilPageType=initialState, action: ActionsTypes) => {
+export const profileReducer = (state: ProfilPageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case 'ADD-POST':
+        case 'ADD-POST': {
             let newPost = {
                 id: 5,
                 message: state.newPostText,
                 LikesCount: 0
-            }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            break;
-        case 'UPDATE-NEW-POST-TEXT':
-            state.newPostText = action.newText;
-            break;
+            };
+            return {...state, posts: [newPost, ...state.posts], newPostText:''}
+        }
+        case 'UPDATE-NEW-POST-TEXT': {
+            return {...state,newPostText: action.newText}
+        }
+        default:
+            return state
     }
 
     return state

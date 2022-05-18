@@ -1,14 +1,4 @@
-import {ActionsTypes, SendMessageType, UpdateNewBodyType} from "./store";
-
-export type DialogItemType = {
-    id: number
-    name: string
-}
-export type MessageType = {
-    message: string
-    id: number
-}
-
+import {ActionsTypes, DialogItemType, MessageType, SendMessageType, UpdateNewBodyType} from "./redux-store"
 export type initialStateType = typeof initialState
 
 let initialState = {
@@ -26,7 +16,6 @@ let initialState = {
 }
 
 export const dialogsReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
-   debugger
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-BODY':
             return {...state,newMessageBody: action.body}

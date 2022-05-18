@@ -1,33 +1,10 @@
 import React from 'react';
 import {addPostActionCreator, updateNewTextActionCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {ProfileType} from "../Profile";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../redux/dialogs-reducer";
 import {connect} from "react-redux";
-import {Dialogs} from "../../Dialogs/Dialogs";
-import {RootStateReduxType, store} from "../../../redux/redux-store";
+import {RootStateReduxType} from "../../../redux/redux-store";
 import {PostPropsType} from "../../../redux/store";
 import {Dispatch} from "redux";
-
-// const MyPostsContainer = (props: ProfileType) => {
-//     let state=props.store.getState();
-//     let addPost = () => {
-//             props.store.dispatch(addPostActionCreator())
-//     }
-//     let onPostChange = (text:string) => {
-//         props.store.dispatch(updateNewTextActionCreator(text));
-//     }
-//     return (
-//        <MyPosts
-//            updateNewPostText={onPostChange}
-//            addPost={addPost}
-//            posts={state.profileReducer.posts}
-//            newPostText={state.profileReducer.newPostText}
-//        />
-// )
-// };
-//
-// export default MyPostsContainer ;
 
 type mstpType = {
     posts: Array<PostPropsType>
@@ -39,8 +16,8 @@ type mdtpType = {
 }
 const mapStateToProps = (state: RootStateReduxType): mstpType => {
     return {
-        posts: state.profileReducer.posts,
-        newPostText: state.profileReducer.newPostText
+        posts: state.profilePages.posts,
+        newPostText: state.profilePages.newPostText
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mdtpType => {

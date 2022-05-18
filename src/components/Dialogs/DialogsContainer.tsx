@@ -16,7 +16,7 @@ type MapDispatchToPropsType = {
 
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsReducer,
+        dialogsPage: state.dialogsPages,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

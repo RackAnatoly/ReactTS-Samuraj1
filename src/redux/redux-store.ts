@@ -1,7 +1,15 @@
 import {combineReducers, createStore, Store} from "redux";
 import {dialogsReducer} from "./dialogs-reducer";
 import {profileReducer} from "./profile-reducer";
-import {followAC, FollowType, SetusersAC, UnFollowType, usersReducer} from "./users-reducer";
+import {
+    followAC,
+    FollowType,
+    setCurrentPageAC,
+    setTotalCountACType,
+    SetusersAC,
+    UnFollowType,
+    usersReducer
+} from "./users-reducer";
 
 let reducers = combineReducers({
     dialogsPages:dialogsReducer,
@@ -81,4 +89,4 @@ export type SendMessageType = {
     type: 'SEND-MESSAGE',
 }
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
-    | UpdateNewBodyType | SendMessageType | FollowType| UnFollowType|SetusersAC
+    | UpdateNewBodyType | SendMessageType | FollowType| UnFollowType|SetusersAC|setCurrentPageAC|setTotalCountACType

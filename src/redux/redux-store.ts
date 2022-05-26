@@ -4,7 +4,7 @@ import {profileReducer} from "./profile-reducer";
 import {
     followAC,
     FollowType,
-    setCurrentPageAC,
+    setCurrentPageAC, setToggleACType,
     setTotalCountACType,
     SetusersAC,
     UnFollowType,
@@ -12,9 +12,9 @@ import {
 } from "./users-reducer";
 
 let reducers = combineReducers({
-    dialogsPages:dialogsReducer,
-    profilePages:profileReducer,
-    usersPages:usersReducer
+    dialogsPages: dialogsReducer,
+    profilePages: profileReducer,
+    usersPages: usersReducer
 })
 
 export type RootStateReduxType = ReturnType<typeof reducers>
@@ -45,21 +45,21 @@ export type DialogsPageType = {
     dialogs: Array<DialogItemType>
     newMessageBody: string
 }
-export type UsersType={
-    id:number,
-    photos:{small:any,large:any},
-    followed:boolean,
-    name:string,
-    status:string,
-    location?:LocationType
-    uniqueUrlName?:any
+export type UsersType = {
+    id: number,
+    photos: { small: any, large: any },
+    followed: boolean,
+    name: string,
+    status: string,
+    location?: LocationType
+    uniqueUrlName?: any
 }
-export type LocationType={
-    city:string,
-    country:string
+export type LocationType = {
+    city: string,
+    country: string
 }
-export type UsersPageType={
-    users:Array<UsersType>
+export type UsersPageType = {
+    users: Array<UsersType>
 }
 
 export type RootStateType = {
@@ -88,5 +88,14 @@ export type UpdateNewBodyType = {
 export type SendMessageType = {
     type: 'SEND-MESSAGE',
 }
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
-    | UpdateNewBodyType | SendMessageType | FollowType| UnFollowType|SetusersAC|setCurrentPageAC|setTotalCountACType
+export type ActionsTypes =
+    AddPostActionType
+    | ChangeNewTextActionType
+    | UpdateNewBodyType
+    | SendMessageType
+    | FollowType
+    | UnFollowType
+    | SetusersAC
+    | setCurrentPageAC
+    | setTotalCountACType
+    | setToggleACType

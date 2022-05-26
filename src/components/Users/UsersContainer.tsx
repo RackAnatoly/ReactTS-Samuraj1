@@ -2,15 +2,23 @@ import React from 'react';
 import {connect} from "react-redux";
 import {UsersAPIComponent} from "./UsersAPIComponent";
 import {RootStateReduxType, UsersPageType} from "../../redux/redux-store";
-import { Dispatch} from "redux";
-import {followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unFollowAC} from "../../redux/users-reducer";
+import {Dispatch} from "redux";
+import {
+    followAC,
+    setCurrentPageAC,
+    setToggleAC,
+    setTotalCountAC,
+    setUsersAC,
+    unFollowAC
+} from "../../redux/users-reducer";
 
 
 type MapStatePropsType = {
     users: UsersPageType,
     pageSize: number,
     totalUsersCount: number,
-    currentPage: number
+    currentPage: number,
+    isFetching: boolean
 }
 type MapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -18,6 +26,7 @@ type MapDispatchToPropsType = {
     setUsers: (users: any) => void
     setCurrentPage: (value: number) => void
     setTotalCountAC: (count: number) => void
+    setToggleAC:(isFetching:boolean)=>void
 }
 
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
@@ -25,7 +34,8 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
         users: state.usersPages,
         pageSize: state.usersPages.pageSize,
         totalUsersCount: state.usersPages.totalUsersCount,
-        currentPage: state.usersPages.currentPage
+        currentPage: state.usersPages.currentPage,
+        isFetching: state.usersPages.isFetching
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -44,7 +54,10 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         setTotalCountAC: (count: number) => {
             dispatch(setTotalCountAC(count))
+        },
+        setToggleAC:(isFetching:boolean)=>{
+            dispatch(setToggleAC(isFetching))
         }
     }
 }
-export const UsersContainer = connect<MapStatePropsType,MapDispatchToPropsType,{},RootStateReduxType>(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export const UsersContainer = connect<MapStatePropsType, MapDispatchToPropsType, {}, RootStateReduxType>(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);

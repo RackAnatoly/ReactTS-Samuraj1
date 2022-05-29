@@ -2,7 +2,6 @@ import React from 'react';
 import {UsersPageType} from "../../redux/redux-store";
 import axios from "axios";
 import {Users} from "./Users";
-import preloader from '../../assets/Wedges-3s-200px.svg'
 import Preloader from "../../common/Preloader/Preloader";
 
 export type UsersPropsType = {

@@ -80,6 +80,10 @@ export type ChangeNewTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: string
 }
+export type SetUserProfileActionType = {
+    type: 'SET-USER-PROFILE',
+    profile: object
+}
 
 export type UpdateNewBodyType = {
     type: 'UPDATE-NEW-MESSAGE-BODY',
@@ -99,3 +103,4 @@ export type ActionsTypes =
     | setCurrentPageAC
     | setTotalCountACType
     | setToggleACType
+    | SetUserProfileActionType

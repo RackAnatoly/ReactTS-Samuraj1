@@ -10,7 +10,6 @@ export type MyPostType = {
     newPostText: string
 }
 
-
 const MyPosts = (props: MyPostType) => {
 
     let postsElements = props.posts.map((p) => <Post key={p.id} message={p.message} LikesCount={p.LikesCount}/>)

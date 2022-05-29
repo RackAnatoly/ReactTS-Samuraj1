@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./users.module.css";
 import imagePhoto from "../../assets/images/images.png";
 import {UsersPageType} from "../../redux/redux-store";
+import {NavLink} from "react-router-dom";
 
 type UsersType = {
     totalUsersCount: number,
@@ -47,7 +48,9 @@ export const Users = (props: UsersType) => {
             {props.users.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small !== null ? u.photos.small : imagePhoto} className={styles.photo}/>
+                        <NavLink to ={'/profile/' + u.id}>
+                            <img src={u.photos.small !== null ? u.photos.small : imagePhoto} className={styles.photo}/>
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed

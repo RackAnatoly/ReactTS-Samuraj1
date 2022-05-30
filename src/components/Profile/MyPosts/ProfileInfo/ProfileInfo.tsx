@@ -13,7 +13,7 @@ export const ProfileInfo = (props:profilePropsType) => {
             <img src="https://www.w3schools.com/css/img_5terre_wide.jpg" alt=""/>
         </div>
         <div>
-            <img src={props.profile.photos.large}/>
+            <img src={props.profile.photos}/>
             ava + description
         </div>
     </div>

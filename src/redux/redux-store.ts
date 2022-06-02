@@ -10,11 +10,13 @@ import {
     UnFollowType,
     usersReducer
 } from "./users-reducer";
+import {authReducer} from "./auth-reducer";
 
 let reducers = combineReducers({
     dialogsPages: dialogsReducer,
     profilePages: profileReducer,
-    usersPages: usersReducer
+    usersPages: usersReducer,
+    auth:authReducer
 })
 
 export type RootStateReduxType = ReturnType<typeof reducers>

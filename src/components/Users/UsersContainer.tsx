@@ -62,7 +62,7 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
 //     }
 // }
 
-export const UsersContainer = connect<MapStatePropsType, MapDispatchToPropsType, {}, RootStateReduxType>(mapStateToProps, {
+export const UsersContainer = connect(mapStateToProps, {
     follow:followAC,
     unFollow:unFollowAC,
     setUsers:setUsersAC,

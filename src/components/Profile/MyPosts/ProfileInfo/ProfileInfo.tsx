@@ -1,7 +1,7 @@
 import React from 'react';
 import {profilePropsType} from "../../Profile";
 import Preloader from "../../../../common/Preloader/Preloader";
-
+import s from "./ProfileInfo.module.css";
 
 
 export const ProfileInfo = (props:profilePropsType) => {
@@ -9,7 +9,7 @@ export const ProfileInfo = (props:profilePropsType) => {
         <Preloader/>
     }
     return <div>
-        <div>
+        <div className={s.photo}>
             <img src="https://www.w3schools.com/css/img_5terre_wide.jpg" alt=""/>
         </div>
         <div>

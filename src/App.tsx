@@ -9,30 +9,29 @@ import {RootStateReduxType} from "./redux/redux-store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import {HeaderContainerMain} from "./components/Header/HeaderContainer";
 
 
-
-
-type PropsType= {
+type PropsType = {
     store: RootStateReduxType,
 }
 
 function App(props: PropsType) {
     return (
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path='/dialogs/*' element={<DialogsContainer />}/>
-                        <Route path='/profile' element={<ProfileContainer />}/>
-                        <Route path='/profile/:userId' element={<ProfileContainer />}/>
-                        <Route path='/users' element={<UsersContainer/>}/>
-                        <Route path='/music' element={<Music/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
-                    </Routes>
-                </div>
+        <div className='app-wrapper'>
+            <HeaderContainerMain/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Routes>
+                    <Route path='/dialogs/*' element={<DialogsContainer/>}/>
+                    <Route path='/profile' element={<ProfileContainer/>}/>
+                    <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/music' element={<Music/>}/>
+                    <Route path='/settings' element={<Settings/>}/>
+                </Routes>
             </div>
+        </div>
     )
 }
 

@@ -1,4 +1,4 @@
-import {ActionsTypes, MessageType, UsersType} from "./redux-store";
+import {ActionsTypes, UsersType} from "./redux-store";
 
 export type initialStateType = typeof initialState
 
@@ -7,7 +7,8 @@ let initialState = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching:false
+    isFetching:false,
+    followingInProgress:[]
 }
 
 export const usersReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
@@ -24,6 +25,11 @@ export const usersReducer = (state: initialStateType = initialState, action: Act
             return{...state,totalUsersCount: action.count}
         case "SET-TOGGLE":
             return {...state, isFetching: action.isFetching }
+        case "TOGGLE-IS-FOLLOWING":
+            return {...state,
+                followingInProgress:action.isFetching
+                    ?[...state.followingInProgress,action.userId]
+                    :state.followingInProgress.filter(id=>id!=action.userId) }
         default:
             return state
     }
@@ -36,6 +42,7 @@ export const setUsersAC = (users: any): SetusersAC => ({type: 'SET_USERS', users
 export const setCurrentPageAC = (value: number): setCurrentPageAC => ({type: 'SET-CURRENT-PAGE', value})
 export const setTotalCountAC = (count: number): setTotalCountACType => ({type: 'SET-TOTAL-COUNT', count})
 export const setToggleAC = (isFetching:boolean): setToggleACType => ({type: 'SET-TOGGLE',isFetching})
+export const setFolowingProgresAC = (isFetching:boolean,userId:any) => ({type: 'TOGGLE-IS-FOLLOWING',isFetching,userId} as const)
 
 export type FollowType = {
     type: 'FOLLOW',
@@ -61,4 +68,5 @@ export type setToggleACType = {
     type: 'SET-TOGGLE',
     isFetching:boolean
 }
+export type setFolowingProgresType = ReturnType<typeof setFolowingProgresAC>
 

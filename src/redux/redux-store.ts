@@ -4,7 +4,7 @@ import {profileReducer} from "./profile-reducer";
 import {
     followAC,
     FollowType,
-    setCurrentPageAC, setToggleACType,
+    setCurrentPageAC, setFolowingProgresType, setToggleACType,
     setTotalCountACType,
     SetusersAC,
     UnFollowType,
@@ -16,7 +16,7 @@ let reducers = combineReducers({
     dialogsPages: dialogsReducer,
     profilePages: profileReducer,
     usersPages: usersReducer,
-    auth:authReducer
+    auth: authReducer
 })
 
 export type RootStateReduxType = ReturnType<typeof reducers>
@@ -106,3 +106,4 @@ export type ActionsTypes =
     | setTotalCountACType
     | setToggleACType
     | SetUserProfileActionType
+    | setFolowingProgresType

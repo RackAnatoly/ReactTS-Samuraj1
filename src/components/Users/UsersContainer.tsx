@@ -4,7 +4,7 @@ import {UsersAPIComponent} from "./UsersAPIComponent";
 import {RootStateReduxType, UsersPageType} from "../../redux/redux-store";
 import {
     followAC,
-    setCurrentPageAC,
+    setCurrentPageAC, setFolowingProgresAC,
     setToggleAC,
     setTotalCountAC,
     setUsersAC,
@@ -17,7 +17,8 @@ type MapStatePropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress:boolean
 }
 type MapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -34,7 +35,8 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
         pageSize: state.usersPages.pageSize,
         totalUsersCount: state.usersPages.totalUsersCount,
         currentPage: state.usersPages.currentPage,
-        isFetching: state.usersPages.isFetching
+        isFetching: state.usersPages.isFetching,
+        followingInProgress: state.usersPages.followingInProgress
     }
 }
 
@@ -68,5 +70,6 @@ export const UsersContainer = connect(mapStateToProps, {
     setUsers:setUsersAC,
     setCurrentPage:setCurrentPageAC,
     setTotalCountAC:setTotalCountAC,
-    setToggleAC:setToggleAC
+    setToggleAC:setToggleAC,
+    toggleFollowingProgress:setFolowingProgresAC
 })(UsersAPIComponent);

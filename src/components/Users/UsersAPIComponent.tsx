@@ -1,8 +1,8 @@
 import React from 'react';
 import {UsersPageType} from "../../redux/redux-store";
-import axios from "axios";
 import {Users} from "./Users";
 import Preloader from "../../common/Preloader/Preloader";
+import {usersApi} from "../../api/api";
 
 export type UsersPropsType = {
     users: UsersPageType,
@@ -15,31 +15,30 @@ export type UsersPropsType = {
     setCurrentPage: (value: number) => void
     setTotalCountAC: (count: number) => void
     isFetching: boolean
-    setToggleAC: (isFetching: boolean) => void
+    setToggleAC: (isFetching: boolean) => void,
+    toggleFollowingProgress: (isFetching: boolean) => void,
+    followingInProgress: boolean
 }
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setToggleAC(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials:true
-        })
-            .then(response => {
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(data => {
                 this.props.setToggleAC(false)
-                this.props.setUsers(response.data.items);
-                this.props.setTotalCountAC(response.data.totalCount)
+                this.props.setUsers(data.items);
+                this.props.setTotalCountAC(data.totalCount)
             })
     }
 
     onPageChanged(pageNumber: number) {
         this.props.setCurrentPage(pageNumber)
         this.props.setToggleAC(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
-            withCredentials:true
-        })
-            .then(response => {
+
+        usersApi.getUsers(pageNumber, this.props.pageSize)
+            .then(data => {
                 this.props.setToggleAC(false);
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(data.items)
             })
     }
 
@@ -55,6 +54,8 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                     users={this.props.users}
                     follow={this.props.follow}
                     unFollow={this.props.unFollow}
+                    toggleFollowingProgress={this.props.toggleFollowingProgress}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
 

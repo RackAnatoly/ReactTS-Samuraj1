@@ -17,6 +17,9 @@ export const usersApi = {
     },
     unUnfollowUsers(id: number) {
         return instance.post(`follow/${id}`)
+    },
+    getProfile(userId:number){
+        return instance.get(`/profile/${userId}`)
     }
 }
 // export const getUsers = (currentPage: number, pageSize: number) => {

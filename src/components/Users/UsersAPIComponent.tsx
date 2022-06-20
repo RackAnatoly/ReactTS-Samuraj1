@@ -3,6 +3,7 @@ import {UsersPageType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import Preloader from "../../common/Preloader/Preloader";
 import {usersApi} from "../../api/api";
+import {followThunkCreator, getUsersThunkCreator, unFollowThunkCreator} from "../../redux/users-reducer";
 
 export type UsersPropsType = {
     users: UsersPageType,
@@ -17,29 +18,19 @@ export type UsersPropsType = {
     isFetching: boolean
     setToggleAC: (isFetching: boolean) => void,
     toggleFollowingProgress: (isFetching: boolean) => void,
-    followingInProgress: boolean
+    followingInProgress: any
+    getUsersThunkCreator:(currentPage:number,pageSize:number)=>void
+    unFollowThunkCreator:(UserId:number)=>void
+    followThunkCreator:(UserId:number)=>void
 }
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
-        this.props.setToggleAC(true);
-        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setToggleAC(false)
-                this.props.setUsers(data.items);
-                this.props.setTotalCountAC(data.totalCount)
-            })
+        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize)
     }
 
     onPageChanged(pageNumber: number) {
-        this.props.setCurrentPage(pageNumber)
-        this.props.setToggleAC(true);
-
-        usersApi.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.setToggleAC(false);
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsersThunkCreator(pageNumber,this.props.pageSize)
     }
 
     render() {
@@ -56,9 +47,10 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                     unFollow={this.props.unFollow}
                     toggleFollowingProgress={this.props.toggleFollowingProgress}
                     followingInProgress={this.props.followingInProgress}
+                    followThunkCreator={followThunkCreator}
+                    unFollowThunkCreator={unFollowThunkCreator}
                 />
             </>
-
         );
     }
 }

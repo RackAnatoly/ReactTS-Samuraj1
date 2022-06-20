@@ -13,8 +13,10 @@ type UsersType = {
     users: UsersPageType
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-    toggleFollowingProgress:(isFetching:boolean,id:number)=>void
-    followingInProgress:[]
+    toggleFollowingProgress: (isFetching: boolean, id: number) => void
+    followingInProgress: any
+    unFollowThunkCreator: (UserId: number) => void
+    followThunkCreator: (UserId: number) => void
 }
 
 export const Users = (props: UsersType) => {
@@ -57,26 +59,14 @@ export const Users = (props: UsersType) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
-                                props.toggleFollowingProgress(true,u.id)
-                                usersApi.followUsers(u.id)
-                                    .then(res => {
-                                        if (res.data.resultCode == 0) {
-                                            props.unFollow(u.id)
-                                        }
-                                        props.toggleFollowingProgress(false,u.id)
-                                    })
+                            ?
+                            <button disabled={props.followingInProgress.some((id: any) => id === u.id)} onClick={() => {
+                                props.unFollowThunkCreator(u.id)
 
                             }}>unFollow</button>
-                            : <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
-                                props.toggleFollowingProgress(true,u.id)
-                                usersApi.unUnfollowUsers(u.id)
-                                    .then(res => {
-                                        if (res.data.resultCode == 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.toggleFollowingProgress(false,u.id)
-                                    })
+                            :
+                            <button disabled={props.followingInProgress.some((id: any) => id === u.id)} onClick={() => {
+                                props.followThunkCreator(u.id)
                             }}>Follow</button>}
                     </div>
                 </span>

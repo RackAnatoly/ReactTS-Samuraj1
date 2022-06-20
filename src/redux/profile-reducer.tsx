@@ -1,5 +1,6 @@
 import {ActionsTypes, AddPostActionType, ChangeNewTextActionType, SetUserProfileActionType} from "./redux-store";
 import {PostPropsType} from "./store";
+import {Dispatch} from "redux";
 
 export type initialStateType = typeof initialState
 
@@ -40,10 +41,13 @@ export const updateNewTextActionCreator = (text: string): ChangeNewTextActionTyp
         newText: text
     }
 }
-
 export const setUserProfile = (profile: object): SetUserProfileActionType => {
     return {
         type: 'SET-USER-PROFILE',
         profile
     }
+}
+
+export const getUserProfile = (userId:any)=>(dispatch:Dispatch)=>{
+
 }

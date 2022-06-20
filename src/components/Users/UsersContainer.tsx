@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 import {UsersAPIComponent} from "./UsersAPIComponent";
 import {RootStateReduxType, UsersPageType} from "../../redux/redux-store";
 import {
-    followAC,
+    followAC, followThunkCreator, getUsersThunkCreator,
     setCurrentPageAC, setFolowingProgresAC,
     setToggleAC,
     setTotalCountAC,
     setUsersAC,
-    unFollowAC
+    unFollowAC, unFollowThunkCreator
 } from "../../redux/users-reducer";
 
 
@@ -18,7 +18,7 @@ type MapStatePropsType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress:boolean
+    followingInProgress:any
 }
 type MapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -41,29 +41,6 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
 }
 
 
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(followAC(userId))
-//         },
-//         unFollow: (userId: number) => {
-//             dispatch(unFollowAC(userId))
-//         },
-//         setUsers: (users: any) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (value: number) => {
-//             dispatch(setCurrentPageAC(value))
-//         },
-//         setTotalCountAC: (count: number) => {
-//             dispatch(setTotalCountAC(count))
-//         },
-//         setToggleAC:(isFetching:boolean)=>{
-//             dispatch(setToggleAC(isFetching))
-//         }
-//     }
-// }
-
 export const UsersContainer = connect(mapStateToProps, {
     follow:followAC,
     unFollow:unFollowAC,
@@ -71,5 +48,8 @@ export const UsersContainer = connect(mapStateToProps, {
     setCurrentPage:setCurrentPageAC,
     setTotalCountAC:setTotalCountAC,
     setToggleAC:setToggleAC,
-    toggleFollowingProgress:setFolowingProgresAC
+    toggleFollowingProgress:setFolowingProgresAC,
+    getUsersThunkCreator,
+    followThunkCreator,
+    unFollowThunkCreator
 })(UsersAPIComponent);
